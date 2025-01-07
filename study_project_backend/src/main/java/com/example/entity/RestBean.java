@@ -15,6 +15,18 @@ public class RestBean<T> {
         this.success = success;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public T getMessage() {
+        return message;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
     public static <T> RestBean<T> success() {
         return new RestBean<>(200, null, true);
     }
