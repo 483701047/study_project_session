@@ -3,6 +3,7 @@ package com.example.service;
 import com.example.entity.Account;
 import com.example.mapper.UserMapper;
 import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthorizeService implements UserDetailsService {
 
-    @Resource
+    @Autowired
     UserMapper mapper;
 
     @Override
