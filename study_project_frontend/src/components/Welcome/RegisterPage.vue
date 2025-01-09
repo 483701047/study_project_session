@@ -2,6 +2,8 @@
 import {EditPen, Lock, Message, User} from "@element-plus/icons-vue";
 import router from "@/router/index.js";
 import {reactive,ref} from "vue";
+import {ElMessage} from "element-plus";
+import {post} from "@/net";
 
 const form = reactive({
   username:'',
@@ -53,17 +55,41 @@ const rules = {
   ]
 }
 
+const formRef=ref()
 const isEmailValid=ref(false)
+
+const onValidate=(prop,isValid)=>{
+  if (prop==='email')
+    isEmailValid.value=isValid
+}
+
+const register=()=>{
+  formRef.value.validate((isValid)=>{
+    if (isValid){
+
+    }else {
+      ElMessage.warning('请完整填完相关信息')
+    }
+  })
+}
+
+const validateEmail=()=>{
+  post('api/auth/valid_email',{
+    email:form.email
+  },(message)=>{
+    ElMessage.success(message)
+  })
+}
 </script>
 
 <template>
 <div style="text-align: center;margin:0 20px">
   <div style="margin-top: 100px">
     <div style="font-size: 25px;font-weight: bold">注册新用户</div>
-    <div style="font-size: 14px;color: gray">欢迎使用学平台，在下方填写信息</div>
+    <div style="font-size: 14px;color: gray">欢迎使用学习平台，在下方填写信息</div>
   </div>
   <div style="margin-top: 50px">
-    <el-form :model="form" :rules="rules">
+    <el-form :model="form" :rules="rules" @validate="onValidate" ref="formRef">
       <el-form-item prop="username">
         <el-input v-model="form.username" type="text" placeholder="用户名">
           <template #prefix>
@@ -102,14 +128,14 @@ const isEmailValid=ref(false)
             </el-input>
           </el-col>
           <el-col :span="5">
-            <el-button type="success" :disabled="!isEmailValid">发送验证码</el-button>
+            <el-button @click="validateEmail" type="success" :disabled="!isEmailValid">发送验证码</el-button>
           </el-col>
         </el-row>
       </el-form-item>
     </el-form>
   </div>
   <div style="margin-top: 80px">
-    <el-button style="width: 270px" type="warning">立即注册</el-button>
+    <el-button @click="register" style="width: 270px" type="warning">立即注册</el-button>
   </div>
   <div style="font-size: 14px;line-height: 15px;margin-top: 20px">
     <span style="color: gray">已经注册？</span>
