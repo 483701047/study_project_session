@@ -1,6 +1,6 @@
 package com.example.service.impl;
 
-import com.example.entity.Account;
+import com.example.entity.auth.Account;
 import com.example.mapper.UserMapper;
 import com.example.service.AuthorizeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,8 +86,10 @@ public class AuthorizeServiceImpl implements AuthorizeService {
             if (s==null)
                 return "验证码已过期，请重新获取";
             if (s.equals(code)){
-                password=encoder.encode(password);
+                Account account=mapper.findAccountByName0rEmail(username);
+                if (account!=null) return "此用户名已被注册";
                 template.delete(key);
+                password=encoder.encode(password);
                 if (mapper.creatAccount(username,password,email)>0){
                     return null;
                 }else {
