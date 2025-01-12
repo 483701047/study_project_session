@@ -6,7 +6,7 @@
   <div style="width: 100vw;height: 100vh;overflow: hidden;display: flex">
     <div style="flex:1">
       <el-image style="width: 100%;height: 100%" fit="cover"
-                src="https://i2.hdslb.com/bfs/archive/a9298260eb1ea607fbd5ca94648043f472cccc65.jpg"/>
+                src="https://i0.hdslb.com/bfs/archive/bece658ecf536eaa4d5e5e71f7ef9168256e5a0c.jpg"/>
     </div>
     <div class="welcome-title">
       <div style="font-size: 30px;font-weight: bold">欢迎来到学习平台</div>
@@ -19,6 +19,7 @@
           <component :is="Component" />
         </transition>
       </router-view>
+
     </div>
   </div>
 </template>
