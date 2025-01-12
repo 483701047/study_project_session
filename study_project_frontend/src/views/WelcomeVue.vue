@@ -6,7 +6,7 @@
   <div style="width: 100vw;height: 100vh;overflow: hidden;display: flex">
     <div style="flex:1">
       <el-image style="width: 100%;height: 100%" fit="cover"
-                src="https://i2.hdslb.com/bfs/archive/a9298260eb1ea607fbd5ca94648043f472cccc65.jpg"/>
+                src="https://oss.itbaima.cn/hub/930/image-20250112f6sn76ief.jpeg"/>
     </div>
     <div class="welcome-title">
       <div style="font-size: 30px;font-weight: bold">欢迎来到学习平台</div>
