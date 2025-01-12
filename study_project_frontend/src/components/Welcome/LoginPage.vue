@@ -2,11 +2,8 @@
 import {Lock, User} from "@element-plus/icons-vue";
 import {reactive} from "vue";
 import {ElMessage} from "element-plus";
-import {get, post} from "@/net";
+import {post} from "@/net";
 import router from "@/router/index.js";
-import {useStore} from "@/stores/index.js";
-
-const store=useStore()
 
 const from=reactive({
   username:'',
@@ -24,12 +21,7 @@ const login=()=>{
       remember:from.remember
     },(message)=>{
       ElMessage.success(message)
-      get('api/user/me',(message)=>{
-        store.auth.user=message
-        router.push('/index')
-      },()=>{
-        store.auth.user=null
-      })
+      router.push('/index')
     })
   }
 }
